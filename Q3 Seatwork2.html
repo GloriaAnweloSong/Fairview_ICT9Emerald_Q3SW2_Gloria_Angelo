@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Q3 Seatwork 2</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="#"><img src="#" alt="---"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button> 
+
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Locations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Computer</a>
+        </li>
+      </ul>
+
+      <form class="d-flex">
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button class="btn btn-warning" type="button">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<br><br>    
+
+<!------------------------------------------------------------------------------>
+
+<div class="container text-center bg-info">
+    <h2>---</h2>
+    <p>Enter your preferred price here (with a 15% discount to add), and we'll try to find your optimal --- for your budget!</p>
+    <form action="#">
+        <label for="P"><b>Preferred Price</b></label>
+        <input type="number" id="P" class="form-control" placeholder="Enter your price here...">
+        <br>
+
+        <div class="row"> <!--uhh results go here in a black box like in team fortress 2-->
+            <div class="col-lg-6">
+                <p>Final Price (PHP):</p>
+                <kbd id="FP">PHP</kbd>
+            </div>
+        </div>
+    </div>
+    <br>
+    </form>
+</div>
+<br>
+
+
+
+    <button type="button" class="btn btn-success text-center" onclick="window.location.reload()">Refresh</button>
+
+    <script>
+
+        function finalPrice(){
+            var P = document.getElementById('P').value;
+            var FP = (Number(P) * 85) / 100; // * 100 makes the number 85% of itself, / 100 to actually make that work and ensure that it is rounded to 2 dp
+
+        }
+
+        function revealBunch(){
+            document.getElementById("Bunch").innerHTML =
+            "<br><b style='color: white;'>Recommended Brands:<br>"
+            +
+            "<p>Acer</p><br>"
+            +
+            "<kbd>" + FP + "</kbd>";
+
+        }
+
+        function revealPlac(){
+            document.getElementById("Plac").innerHTML =
+            "<br><b style='color: white;'>Places:<br>"
+            +
+            "<p>place</p><br>"
+            +
+            "<kbd>" + FP + "</kbd>";
+
+        }
+
+    </script>
+
+
+
+
+</body>
+</html>

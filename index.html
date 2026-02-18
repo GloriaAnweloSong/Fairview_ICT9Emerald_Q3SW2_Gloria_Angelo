@@ -7,14 +7,26 @@
     <title>Q3 Seatwork 2</title>
     <style>
         
+        body{
+            background-color: #f9f9e7;
+        }
+
+        img{
+            height: 250px;
+            width: 350px;
+            object-fit: cover;
+
+        }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-info">
-  <div class="container-fluid">
+<!--navbar-->
 
-    <a class="navbar-brand" href="#"><img src="#" alt="---"></a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+
+    <p class="navbar-brand fw-bold">PHLo Cheaps !</p>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button> 
@@ -27,9 +39,6 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Locations</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Computer</a>
-        </li>
       </ul>
 
       <form class="d-flex">
@@ -38,67 +47,157 @@
       </form>
     </div>
   </div>
-</nav>
-<br><br>    
+</nav> 
+<br><br>
 
-<!------------------------------------------------------------------------------>
+<!--page title and description-->
 
-<div class="container text-center bg-info">
-    <h2>---</h2>
-    <p>Enter your preferred price here (with a 15% discount to add), and we'll try to find your optimal --- for your budget!</p>
+<div class="container text-center">
+    <h2 class="fw-bold">🖥️ Computers and PCs 🖱️</h2>
+    <br>
+
+    <p>Enter your preferred price here with a 15% discount here at LoCheaps!</p>
+
+<!--input budget here and input for the calculate()-->
+
     <form action="#">
-        <label for="P"><b>Preferred Price</b></label>
-        <input type="number" id="P" class="form-control" placeholder="Enter your price here...">
+        <label for="P"><b>Enter your Preferred Budget Here! 💵</b></label>
+        <input type="number" id="P" class="form-control" placeholder="Enter your budget here...">
         <br>
 
-        <div class="row"> <!--uhh results go here in a black box like in team fortress 2-->
-            <div class="col-lg-6">
-                <p>Final Price (PHP):</p>
-                <kbd id="FP">PHP</kbd>
-            </div>
-        </div>
-    </div>
-    <br>
+        <button type="submit" class="btn btn-success" onclick="calculate()">See your Price!</button>
     </form>
 </div>
 <br>
 
+<!--displays the output of the calculate()-->
 
+    <div class="alert alert-success text-center">
+        <p id="rizzult" class="mt-3"></p>
+    </div>
 
-    <button type="button" class="btn btn-success text-center" onclick="window.location.reload()">Refresh</button>
+<!--displays the reccomendation boxes for the preferred budget-->
+   
+    <div class="row text-center">
+
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6>🌱 Manufacturers</h6>
+                    <p id="Manufacs"></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Locations 🏤</h6>
+                    <p id="Locations"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+    <div class="justify-content-center text-center">
+        <button type="button" class="btn btn-success text-center" onclick="window.location.reload()">Refresh Page</button>
+    </div>
 
     <script>
+        function calculate(){
 
-        function finalPrice(){
+        // for price and final price
             var P = document.getElementById('P').value;
-            var FP = (Number(P) * 85) / 100; // * 100 makes the number 85% of itself, / 100 to actually make that work and ensure that it is rounded to 2 dp
+            var FP = (Number(P) * 85) / 100; // * 100 makes the number 85% of itself, / 100 to actually ensure that it is rounded to 2 dp
+            
+        // for amount saved
+            var NP = (Number(P) * 100) / 100;
+            var SV = NP - FP;
+            SV = Math.round(SV * 100) / 100; // mechanism to round it off to 2 dp
+
+        // to display (also a lot of concatenation)
+            document.getElementById("rizzult").innerHTML= "The Final Price is " + FP + " PHP 🪙 <br>" + "You have saved " + SV + " PHP! 😁";
+            
+            revealManufacs();  // to reveal the rec boxes for the price
+            revealLocations();
 
         }
 
-        function revealBunch(){
-            document.getElementById("Bunch").innerHTML =
-            "<br><b style='color: white;'>Recommended Brands:<br>"
-            +
-            "<p>Acer</p><br>"
-            +
-            "<kbd>" + FP + "</kbd>";
+        // to display the 2 reccomendation boxes for the budget chosen (also weird concatenation, i guess?)
+
+        function revealManufacs(FP){
+            document.getElementById("Manufacs").innerHTML =
+
+            "<br><b style='color: white;'>Recommendations:</b><br>" +
+            "<p>Acer</p><br>" +
+            "<p>Asus</p><br>" +
+            "<p>Lenovo</p><br>";
 
         }
 
-        function revealPlac(){
-            document.getElementById("Plac").innerHTML =
-            "<br><b style='color: white;'>Places:<br>"
+        function revealLocations(){
+            document.getElementById("Locations").innerHTML =
+
+            "<br><b style='color: white;'>Locations:<br>"
             +
-            "<p>place</p><br>"
+            "<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG8LEelXoKvRnjei7eZi7QXrAgvCb6b_KYiHRlyEXFabwqfEvE8_AbWUq85n7jLHeChak&usqp=CAU'><br>"
             +
-            "<kbd>" + FP + "</kbd>";
+            "<img src='https://thepodium.com.ph/wp-content/uploads/2019/07/2-1.jpg'>";
 
         }
 
     </script>
 
 
+<!--
+  Sources:
+      1. ChatGPT (because I was a little confused here):
+        "Why is SV here not rounding off to 2 decimal places:
+              
+        function calculate(){
 
+        // for price and final price
+            var P = document.getElementById('P').value;
+            var FP = (Number(P) * 85) / 100; // * 100 makes the number 85% of itself, / 100 to actually ensure that it is rounded to 2 dp
+            
+        // for amount saved
+            var NP = (Number(P) * 100) / 100;
+            var SV = NP - FP;
+            var SV = (Number(SV) * 100) / 100; // mechanism to round it off to 2 dp
+
+        // to display (also a lot of concatenation)
+            document.getElementById("rizzult").innerHTML= "The Final Price is " + FP + " PHP 🪙 <br>" + "You have saved " + SV + " PHP! 😁";
+
+        }
+              "
+
+        Response:
+
+        You’re super close — the math is fine, but the rounding logic is the problem.
+        This part:
+
+        (Number(SV) * 100) / 100
+
+
+        does not round anything. It just multiplies and divides by 100, which cancels itself out. So decimals stay messy (JavaScript floating-point moment 😅).
+
+        ✅ The real way to round to 2 decimal places
+
+        Use either:
+
+        SV = Math.round(SV * 100) / 100;
+
+
+        or (even better for display):
+
+        SV = SV.toFixed(2);
+
+
+      2. EasyPC Online Store. (n.d.). Facebook. https://www.facebook.com/easypconlinestore/
+      3. Datablitz - The podium. (n.d.). The Podium. https://thepodium.com.ph/store/datablitz/
+        -->
 
 </body>
 </html>
